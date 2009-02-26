@@ -47,7 +47,11 @@ Generate and apply the migration:
   #--------the save_with_photos will handle the  save logic for photos
   it require  the params[:photos] like 		        "photos"=>[#<ActionController::UploadedStringIO:0x3893bb0>,      #<ActionController::UploadedStringIO:0x3893570>]
 
-  maybe you would like to use rake aap:cp_photos_view to generate the view file for upload photos to app/views/shared, it use a little jquery to work to me,  you should feel free to change it.
+  maybe you would like to use 
+    rake aap:cp_photos_view 
+  to generate the view file for upload photos to app/views/shared, 
+  then <%= render :partial => "shared/upload_photo" %> to use it in the view.
+  it use a little jquery to work to me,  you should feel free to change it.
 
 ============
-Copyright (c) 2009 Dave Liu(liuwenju26@gmail.com), released under the MIT license
+Copyright (c) 2009 Dave Liu(liuwenju26@gmail.com), blog: http://www.liageren.com/blog. released under the MIT license
