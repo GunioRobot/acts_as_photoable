@@ -1,0 +1,53 @@
+ActsAsPhotoable
+===============
+
+This acts_as_photoable provides the capabilities for models to have photos.   
+It's based on use the paperclip plugin to handle the photo upload.
+
+
+== Usage
+
+Generate and apply the migration:
+
+  ruby script/generate acts_as_photoable_migration
+  rake db:migrate  
+
+	class Post < ActiveRecord::Base
+    acts_as_photoable
+  end            
+
+	class Photo < ActiveRecord::Base  #this need you create,  not generate
+	  belongs_to :photoable, :polymorphic => true
+
+	  has_attached_file :photo,
+	      :styles => {
+	        :thumb=> "40x40#",
+	        :small  => "176x100>",
+	        :main  => "706x403>" }
+
+	  Content_Types  = ['image/jpeg', 'image/pjpeg', 'image/gif', 
+	        'image/png', 'image/x-png', 'image/jpg']
+	  validates_attachment_content_type :photo, :content_type => Content_Types
+
+	end  
+	
+	#-------just sample code in controller!!
+	def create
+    @post = Post.new(params[:post])       
+
+    respond_to do |format|
+      if @post.save && @musician.save_with_photos(params[:photos])
+        format.html { redirect_to @post }
+      else
+        format.html { render :action => "new" }
+      end
+    end
+  end
+
+  #--------the save_with_photos will handle the  save logic for photos
+  it require  the params[:photos] like 		        "photos"=>[#<ActionController::UploadedStringIO:0x3893bb0>,      #<ActionController::UploadedStringIO:0x3893570>]
+
+  maybe you would like to use rake aap:cp_photos_view to generate the view file for upload photos to app/views/shared, it use a little jquery to work to me,  you should feel free to change it.
+
+============
+Copyright (c) 2009 Dave Liu(liuwenju26@gmail.com), released under the MIT license
