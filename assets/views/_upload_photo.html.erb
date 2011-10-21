@@ -1,16 +1,16 @@
 <div id="file_upload_container">
-  <p> 
-	  <label for="photos[]">Photos</label> 
-		<%= file_field_tag 'photos[]' %> 
+  <p>
+	  <label for="photos[]">Photos</label>
+		<%= file_field_tag 'photos[]' %>
 	</p>
 </div>
 
 <!-- empty file upload box that gets added / removed via JS -->
 <div id="empty_file_upload" style="display:none;" >
 	<a style="float:right;" class="action" href="#" onclick="$(this).parent().remove();return false;">remove</a>
-  <p> 
-	  <label for="photos[]">Photo</label> 
-		<%= file_field_tag 'photos[]' %> 
+  <p>
+	  <label for="photos[]">Photo</label>
+		<%= file_field_tag 'photos[]' %>
 	</p>
 </div>
 
@@ -18,7 +18,7 @@
 	<a href="#" class="action" onclick="addEmptyUpload();return false;">add another</a>
 	<script language="javascript" type="text/javascript">
 		// Adds an empty file upload html element to the form.
-		function addEmptyUpload() {     
+		function addEmptyUpload() {
 			$('#empty_file_upload').clone().appendTo('#file_upload_container').show()
 		}
 	</script>
